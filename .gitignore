@@ -1,0 +1,5 @@
+# exclude everything in output
+output/*
+
+# exception to the rule
+!output/empty 
