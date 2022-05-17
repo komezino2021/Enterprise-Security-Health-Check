@@ -8,10 +8,10 @@ Clone the git repository to your device then run each of the modules individuall
 
 ### AD-Healthcheck
 
-Description:
+*Description:*
 Runs lots of different checks against all domains in a the current Active Directory forest. (ForEach domain in forest). If you have more than one forest or are using domain trusts you'll need to run in all other forests/trusted domains to ensure you get full coverage.
 
-Privileges required: Domain User
+*Privileges required:* Domain User
 
 This runs as a standard user and checks all domains in the current forest. 
 Although this script is read-only and safe, don't just run scripts off the internet on your domain - make sure you read and understand what is happening before running.
@@ -22,10 +22,10 @@ The above command will discover all domains in the current forest and then take 
 
 ### get-MFAStatus
 
-Description:
+*Description:*
 This exports the MFA registration status and all other properties for all users in Azure Active Directory. Use it to see which accounts haven't yet registered a form of multi-factor authentication and who they belong to.
 
-Privileges required: Security Reader / Global Reader (If security reader doesn't work, elevate to global reader instead)
+*Privileges required:* Security Reader / Global Reader (If security reader doesn't work, elevate to global reader instead)
 
 This is an update of the script originally released https://lazyadmin.nl/powershell/list-office365-mfa-status-powershell/ via https://github.com/ruudmens/LazyAdmin/blob/master/Office365/MFAStatus.ps1. 
 
@@ -37,10 +37,10 @@ The above command will run get-MFAStatus and export the results to a CSV file fo
 
 ### azure-ad-healthcheck.ps1
 
-Description:
+*Description:*
 This exports all of your Azure AD Conditional Access policies to json files, reports stale azure-ad devices (not authenticated for 180 days), and creates a csv with all Azure AD admin accounts and groups and their assigned roles.
 
-Privileges required: Security Reader / Global Reader (If security reader doesn't work, elevate to global reader instead)
+*Privileges required:* Security Reader / Global Reader (If security reader doesn't work, elevate to global reader instead)
 
 .\azure-ad-healthcheck.ps1
 
