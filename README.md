@@ -2,6 +2,8 @@
 
 This is a collection of powershell scripts that can be used to quickly assess the security posture of an Enterprise AD/AzureAD environment. I'll be updating this over time as more checks and reports are added. 
 
+I recommend reading through the scripts to ensure you understand what they're doing before you run them - they're self documenting and generally easy to follow. While they're all read-only and won't break anything, I always recommend caution when running code from the internet, especially powershell or bash scripts.
+
 ## How to use
 
 Clone the git repository to your device then run each of the modules individually as described. 
@@ -14,7 +16,6 @@ Runs lots of different checks against all domains in a the current Active Direct
 Privileges required: Domain User
 
 This runs as a standard user and checks all domains in the current forest. 
-Although this script is read-only and safe, don't just run scripts off the internet on your domain - make sure you read and understand what is happening before running.
 
 ```
 .\ad-healthcheck.ps1 > '.\output\ad-healthcheck-output.txt'
