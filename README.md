@@ -50,6 +50,6 @@ Privileges required: Security Reader / Global Reader (If security reader doesn't
 .\azure-ad-healthcheck.ps1
 ```
 
-THe above command will create csv and json files prefixed with the current date in the .\output\ folder. 
+The above command will create csv and json files prefixed with the current date in the .\output\ folder. 
 (I'll probably update the other scripts to do this at some point in the future.)
 
