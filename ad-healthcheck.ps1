@@ -1,4 +1,3 @@
-﻿
 Write-Output ""
 Write-Output "Checking domain trusts from current domain"
 Get-ADTrust -Filter * | select Name, Target,distinguishedName,Direction
@@ -51,17 +50,17 @@ ForEach($Domain in $Domains | sort { $_.length }){
     Write-Output ""
     Write-Output "User accounts that can use DES to authenticate (weak encryption)"
     Write-Output ""
-    Get-ADUser -Filter {UserAccountControl -band 0x200000} -server $Domain | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
+    Get-ADUser -Filter {UserAccountControl -band 0x200000} -server $Domain -Properties LastLogonDate, WhenCreated | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
 
     Write-Output ""
     Write-Output "User ccounts that do not require Kerberos pre-authentication (which enables authentication without a password)"
     Write-Output ""
-    Get-ADUser -Filter {DoesNotRequirePreAuth -eq $true} -server $Domain | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
+    Get-ADUser -Filter {DoesNotRequirePreAuth -eq $true} -server $Domain -Properties LastLogonDate, WhenCreated | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
 
     Write-Output ""
     Write-Output "Computers with unconstrained Kerberos delegation (an attacker controlled computer with this enabled can impersonate other computers)"
     Write-Output ""
-    Get-ADComputer -Filter { (TrustedForDelegation -eq $True) -AND (PrimaryGroupID -ne '516') -AND (PrimaryGroupID -ne '521') } -server $Domain | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
+    Get-ADComputer -Filter { (TrustedForDelegation -eq $True) -AND (PrimaryGroupID -ne '516') -AND (PrimaryGroupID -ne '521') } -server $Domain -Properties LastLogonDate, WhenCreated | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
 
     Write-Output ""
     Write-Output "Testing that krbtgt password has been changed in the last 180 days"
@@ -81,12 +80,12 @@ ForEach($Domain in $Domains | sort { $_.length }){
     Write-Output ""
     Write-Output "User accounts that with passwords that never expire"
     Write-Output ""
-    get-aduser -filter * -server $Domain -properties Name, PasswordNeverExpires | where {$_.passwordNeverExpires -eq "true" } |  select name, distinguishedName, LastLogonDate, WhenCreated|Format-Table -AutoSize
+    get-aduser -filter * -server $Domain -properties Name, PasswordNeverExpires, LastLogonDate, WhenCreated | where {$_.passwordNeverExpires -eq "true" } |  select name, distinguishedName, LastLogonDate, WhenCreated|Format-Table -AutoSize
 
     Write-Output ""
     Write-Output "User accounts that do not require a password (even though they may have one)"
     Write-Output ""
-    get-ADUser -server $Domain -Filter {PasswordNotRequired -eq $true} | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
+    get-ADUser -server $Domain -Filter {PasswordNotRequired -eq $true} -Properties LastLogonDate, WhenCreated | select name, distinguishedName, LastLogonDate, WhenCreated |Format-Table -AutoSize
 
     Write-Output ""
     Write-Output "Enabled computer accounts that haven't authenticated in the last 60 days (allowing for 9-14 day LastLogonDate variance) "
