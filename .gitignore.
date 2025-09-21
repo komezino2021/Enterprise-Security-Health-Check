@@ -1,0 +1,42 @@
+# Windows system files
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# PowerShell specific
+*.ps1xml
+*.psd1
+*.psm1
+*.ps1~
+*.psm1~
+*.psd1~
+
+# VS Code / IDE configs
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build/Output folders
+output/
+bin/
+obj/
+dist/
+*.exe
+*.dll
+
+# Package managers
+node_modules/
+packages/
+
+# Git
+*.orig
